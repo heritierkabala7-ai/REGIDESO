@@ -1,0 +1,110 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+.paiement-page{
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+.paiement-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+p{
+    padding:10px 20px;
+    display: flex;
+    gap: 55px;
+    font-weight: bold;
+    flex-direction: column;
+    text-align: center;   
+}
+a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: larger;
+}
+
+retour i {
+    font-size: 20px;
+    color: #0b4d84;
+    margin-right: 10px;
+
+}
+  
+.moyens-paiement{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.moyen{
+    width: 100%;
+    height: 98px;
+    padding:15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #fff;
+    border:1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+.info-reseau{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.info-reseau img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.info-reseau strong{
+    font-size: 15px;   
+}
+.mpesa{
+    color:red;
+}
+.airtel{
+    color:red;
+}
+.orange{
+    color:#ff7a00;
+}
+.affrimoney{
+    color:#d81d7a;
+}
+/*Boutton radio*/
+.moyen input[type="radio"]{
+    width: 28px;
+    height: 17px;
+    accent-color: #0b4d84;
+    cursor:pointer;
+}
+
+.btn-suivant{
+    width: 100%;
+    height: 32px;
+    margin-top: 48px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0b4d84;
+    color: #fff;
+}
+
+.btn-suivant a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 32px;
+}

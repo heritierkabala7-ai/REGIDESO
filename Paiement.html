@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link rel="stylesheet" href="Paiement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+   <div class="paiement-page">
+        <div class="paiement-header">
+            <a href="Regideso.html" class="retour">←</a>
+            
+            <p>Moyen de paiement</p>
+        </div>
+        <form class="moyens-paiement">
+            <label class="moyen">
+                <div class="info-reseau">
+                    <img width="100" src="mpesa.png" alt="M-Pesa">
+                    <strong class="mpesa">M-Pesa</strong>
+                </div>
+                <input type="radio" name="paiement" value="mpesa">
+            </label>
+
+            <label class="moyen">
+                <div class="info-reseau">
+                    <img width="100" height="100" src="airtelmoney.jpg" alt="Airtel Money">
+                    <strong class="airtel">Airtel Money</strong>
+                </div>
+                <input type="radio" name="paiement" value="airtel money">
+            </label>
+
+            <label class="moyen">
+                <div class="info-reseau">
+                    <img width="100" height="100" src="orangemoney.png" alt="Orange Money">
+                    <strong class="orange">Orange Money</strong>
+                </div>
+                <input type="radio" name="paiement" value="orange money">
+            </label>
+
+            <label class="moyen">
+                <div class="info-reseau">
+                    <img width="100px" src="affrimoney.jpg" alt="Affrimoney">
+                    <strong class="affrimoney">Affrimoney</strong>
+                </div>
+                <input type="radio" name="paiement" value="affrimoney">
+            </label>
+
+            <a class="btn-suivant" href="souscription.html">Confirmer le paiement</a>
+        </form>
+
+   </div>
+</body>
+</html>
