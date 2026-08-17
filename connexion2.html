@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer votre Compte</title>
+    <link rel="stylesheet" href="connexion2.css">
+</head>
+<body class="register-body">
+    <div class="register-container">
+        <!--RETOUR-->
+        <a href="index.html" class="back-link">←</a>
+        <!--TITRE-->
+        <h1>Créer un compte</h1>
+
+        <!--FORMULAIRE-->
+        <form class="register-form" id="registerForm">
+           
+            <!--NOM-->
+            <label for="fullName">Nom complet</label>
+            <input id="fullName" type="text" required>
+
+            <!--TELEPHONE-->
+            <label for="phone">Numéro de téléphone</label>
+            <input id="phone" type="tel" placeholder="+243823363701" required>
+
+             <!--PHOTO-->
+            <label for="userPhoto">Photo de profil</label>
+            <input id="userPhoto" type="file" accept="image/*" class="file-input">
+
+
+
+
+            <!--PASSWORD-->
+            <label for="password">Mot de passe (min. 8 caractères)</label>
+            <input id="password" type="password" required>
+       
+            <!--LIGNE DOUBLE-->
+            <div class="double-fields">
+                <div class="field">
+                    <label for="commune">Commune</label>
+                    <select id="commune" required>
+                        <option value="">Choisir</option>
+                        <option>Bandalungwa</option>
+                        <option>Barumbu</option>
+                        <option>Bumbu</option>
+                        <option>Gombe</option>
+                        <option>Kalamu</option>
+                        <option>Kas-vubu</option>
+                        <option>Kimbaseke</option>
+                        <option>Kinshasa</option>
+                        <option>Kintambo</option>
+                        <option>Kisenso</option>
+                        <option>Lemba</option>
+                        <option>Limete</option>
+                        <option>Lingwala</option>
+                        <option>Makala</option>
+                        <option>Maluku</option>
+                        <option>Masina</option>
+                        <option>Matete</option>
+                        <option>Mont-Ngafula</option>
+                        <option>N'Djili</option>
+                        <option>Ngaba</option>
+                        <option>Ngaliema</option>
+                        <option>Ngiri-Ngiri</option>
+                        <option>N'Sele</option>
+                        <option>Selembao</option>
+                    </select>
+                    </div>   
+                    <div class="field">
+                        <label for="counterNumber">N° Client (Optionnel)</label>
+                        <input id="counterNumber" type="text" placeholder="Auto">
+                    </div>                   
+            </div>
+            <!--ADRESSE-->
+            <label for="address">Adresse</label>
+            <input id="address" type="text" placeholder="AV. Kasai n°100" required>
+
+            <!--BOUTON-->
+            <button type="submit">Créer mon compte</button>
+        </form>
+
+        <script>
+            const registerForm = document.getElementById('registerForm');
+
+            registerForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const fileInput = document.getElementById('userPhoto');
+                const fullName = document.getElementById('fullName').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const commune = document.getElementById('commune').value;
+                const address = document.getElementById('address').value.trim();
+                const counterNumber = document.getElementById('counterNumber').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!fullName || !phone || !commune || !address || !password) {
+                    alert('Veuillez remplir les informations obligatoires.');
+                    return;
+                }
+
+                const saveUser = function (photoUrl) {
+                    const user = {
+                        fullName,
+                        phone,
+                        commune,
+                        address,
+                        counterNumber,
+                        password,
+                        photo: photoUrl || ''
+                    };
+
+                    localStorage.setItem('regidesoUser', JSON.stringify(user));
+                    window.location.href = 'profil.html';
+                };
+
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        saveUser(reader.result || '');
+                    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                } else {
+                    saveUser('');
+                }
+            });
+        </script>
+
+        <!--BAS-->
+        <p class="bottom-login">
+            Déjà un compte ?
+            <a href="connexion.html">Se connecter</a>
+        </p>
+    </div>   
+</body>
+</html>

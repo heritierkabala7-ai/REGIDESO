@@ -1,0 +1,178 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: #eef6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.paiement-page{
+    width: min(100%, 430px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 20px 40px;
+}
+
+.paiement-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+p{
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #0b4d84;
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.retour{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0b4d84;
+}
+
+.moyens-paiement{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.moyen{
+    width: 100%;
+    min-height: 98px;
+    padding: 15px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+.info-reseau{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info-reseau img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info-reseau strong{
+    font-size: 15px;
+}
+
+.mpesa{ color: red; }
+.airtel{ color: red; }
+.orange{ color: #ff7a00; }
+.affrimoney{ color: #d81d7a; }
+
+.moyen input[type="radio"]{
+    width: 28px;
+    height: 17px;
+    accent-color: #0b4d84;
+    cursor: pointer;
+}
+
+.btn-suivant{
+    width: 100%;
+    height: 46px;
+    margin-top: 32px;
+    border: none;
+    border-radius: 12px;
+    background-color: #0b4d84;
+    color: #fff;
+    display: block;
+    text-align: center;
+    line-height: 46px;
+    font-weight: bold;
+}
+
+@media (max-width: 480px){
+    body{
+        padding: 14px;
+    }
+
+    .paiement-page{
+        padding: 20px 14px 30px;
+    }
+
+    .paiement-header{
+        margin-bottom: 16px;
+    }
+
+    .paiement-header p{
+        font-size: 18px;
+    }
+
+    .moyen{
+        min-height: 82px;
+        padding: 12px 14px;
+    }
+
+    .info-reseau{
+        gap: 10px;
+    }
+
+    .info-reseau img{
+        width: 60px;
+        height: 60px;
+    }
+
+    .info-reseau strong{
+        font-size: 14px;
+    }
+
+    .moyen input[type="radio"]{
+        width: 22px;
+        height: 22px;
+    }
+
+    .btn-suivant{
+        margin-top: 24px;
+        height: 46px;
+        line-height: 46px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 360px){
+    .paiement-header p{
+        font-size: 17px;
+    }
+
+    .moyen{
+        padding: 10px 12px;
+    }
+
+    .info-reseau img{
+        width: 52px;
+        height: 52px;
+    }
+}

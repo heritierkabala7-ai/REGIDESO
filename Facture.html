@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture d'eau</title>
+    <link rel="stylesheet" href="Facture.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="badge"></div>
+                <div class="company">
+                    <h1>REGIDESO</h1>
+                    <p>Régie de Distribution d'Eau</p>
+                    <p>Av. de l'Eau, Kinshasa</p>
+                    <p>+243 99 123 4567</p>
+                </div>
+            </div>
+            <div class="company">
+                <p><strong>Facture</strong></p>
+                <p>N° : 2026-001234</p>
+                <p>Date : 20 juillet 2026</p>
+            </div>
+        </div>
+
+        <div class="invoice-info">
+            <div class="card">
+                <h2>Client</h2>
+                <p>Nom : M. Jean Mbemba</p>
+                <p>Adresse : 12 Rue des Lilas, Kinshasa</p>
+                <p>Référence : 452178</p>
+            </div>
+            <div class="card">
+                <h2>Période</h2>
+                <p>De : 01/07/2026</p>
+                <p>À : 31/07/2026</p>
+                <p>Lecture précédente : 1 250 m³</p>
+                <p>Lecture actuelle : 1 280 m³</p>
+            </div>
+            <div class="card">
+                <h2>Informations</h2>
+                <p>Consommation : 30 m³</p>
+                <p>Tarif : 1 500 FC/m³</p>
+                <p>Date d'échéance : 05/08/2026</p>
+            </div>
+        </div>
+
+        <table>
+            <tr>
+                <th>Désignation</th>
+                <th>Quantité</th>
+                <th>Prix unitaire</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Eau potable - consommation</td>
+                <td>30 m³</td>
+                <td>1 500 FC</td>
+                <td>45 000 FC</td>
+            </tr>
+            <tr>
+                <td>Abonnement mensuel</td>
+                <td>1</td>
+                <td>10 000 FC</td>
+                <td>10 000 FC</td>
+            </tr>
+            <tr>
+                <td>Taxe d'assainissement</td>
+                <td>1</td>
+                <td>5 000 FC</td>
+                <td>5 000 FC</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="3">Sous-total</td>
+                <td>60 000 FC</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="3">TVA (16%)</td>
+                <td>9 600 FC</td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="3">Total à payer</td>
+                <td>69 600 FC</td>
+            </tr>
+        </table>
+
+        <div class="summary">
+            <div class="note">
+                <p><strong>Notes :</strong></p>
+                <p>Merci de payer avant la date d'échéance. En cas de retard, des pénalités peuvent être appliquées.</p>
+            </div>
+            <div class="amount">
+                <p>Montant total</p>
+                <p>69 600 FC</p>
+            </div>
+        </div>
+
+        <div class="telecharger">
+            <i class="fa-solid fa-download"></i>
+            <p>Télécharger la facture</p>
+        </div>
+
+
+        <div class="footer">
+            <p>REGIDESO - Régie de Distribution d'Eau. Pour toute question, contactez-nous au +243 99 123 4567 ou email contact@regideso.cd</p>
+        </div>
+    </div>
+</body>
+</html>

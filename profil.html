@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon profil REGIDESO</title>
+    <link rel="stylesheet" href="profil.css">
+</head>
+<body class="profile-body">
+    <main class="profile-shell">
+        <header class="profile-header">
+            <div>
+                <small>Votre espace client</small>
+                <h1>Profil REGIDESO</h1>
+            </div>
+            <a href="index.html" class="back-home">Accueil</a>
+        </header>
+
+        <section class="profile-card">
+            <div class="profile-photo-block">
+                <img id="profileImage" src="" alt="Photo de profil" class="hidden">
+                <div id="profilePlaceholder" class="profile-photo-placeholder">Profil</div>
+            </div>
+
+            <div class="profile-info">
+                <p class="profile-label">Compte client</p>
+                <h2 id="profileName">Nom complet</h2>
+
+                <ul class="profile-list">
+                    <li><span>Téléphone</span><strong id="profilePhone">--</strong></li>
+                    <li><span>Commune</span><strong id="profileCommune">--</strong></li>
+                    <li><span>Adresse</span><strong id="profileAddress">--</strong></li>
+                    <li><span>N° client</span><strong id="profileCounter">--</strong></li>
+                    <li><span>Statut</span><strong>Abonné REGIDESO</strong></li>
+                </ul>
+
+                <div class="profile-actions">
+                    <button type="button" class="action-btn secondary" id="logoutBtn">Se déconnecter</button>
+                    <button type="button" class="action-btn primary" id="editBtn">Modifier les informations</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="edit-modal hidden" id="editModal" aria-hidden="true">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h3>Modifier votre profil</h3>
+                <button type="button" class="close-modal" id="closeModalBtn" aria-label="Fermer">×</button>
+            </div>
+
+            <form id="editProfileForm">
+                <div class="field-grid">
+                    <label>
+                        <span>Nom complet</span>
+                        <input type="text" id="editFullName" name="fullName" required>
+                    </label>
+                    <label>
+                        <span>Téléphone</span>
+                        <input type="tel" id="editPhone" name="phone" required>
+                    </label>
+                    <label>
+                        <span>Commune</span>
+                        <input type="text" id="editCommune" name="commune" required>
+                    </label>
+                    <label>
+                        <span>Adresse</span>
+                        <input type="text" id="editAddress" name="address" required>
+                    </label>
+                    <label>
+                        <span>N° Client</span>
+                        <input type="text" id="editCounter" name="counterNumber" required>
+                    </label>
+                    <label>
+                        <span>Photo de profil</span>
+                        <input type="file" id="editPhoto" name="photo" accept="image/*">
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="action-btn secondary" id="cancelEditBtn">Annuler</button>
+                    <button type="submit" class="action-btn primary">Enregistrer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const savedUser = JSON.parse(localStorage.getItem('regidesoUser') || 'null');
+
+        const profileImage = document.getElementById('profileImage');
+        const profilePlaceholder = document.getElementById('profilePlaceholder');
+        const profileName = document.getElementById('profileName');
+        const profilePhone = document.getElementById('profilePhone');
+        const profileCommune = document.getElementById('profileCommune');
+        const profileAddress = document.getElementById('profileAddress');
+        const profileCounter = document.getElementById('profileCounter');
+
+        const logoutBtn = document.getElementById('logoutBtn');
+        const editBtn = document.getElementById('editBtn');
+        const editModal = document.getElementById('editModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const editProfileForm = document.getElementById('editProfileForm');
+
+        function renderProfile(user) {
+            const currentUser = user || savedUser;
+            if (!currentUser) {
+                profileName.textContent = 'Aucun compte enregistré';
+                profilePhone.textContent = 'Veuillez créer un compte';
+                profileCommune.textContent = '--';
+                profileAddress.textContent = '--';
+                profileCounter.textContent = '--';
+                profileImage.classList.add('hidden');
+                profilePlaceholder.classList.remove('hidden');
+                logoutBtn.disabled = true;
+                editBtn.disabled = true;
+                return;
+            }
+
+            if (currentUser.photo) {
+                profileImage.src = currentUser.photo;
+                profileImage.classList.remove('hidden');
+                profilePlaceholder.classList.add('hidden');
+            } else {
+                profileImage.removeAttribute('src');
+                profileImage.classList.add('hidden');
+                profilePlaceholder.classList.remove('hidden');
+            }
+
+            profileName.textContent = currentUser.fullName || 'Nom complet';
+            profilePhone.textContent = currentUser.phone || '--';
+            profileCommune.textContent = currentUser.commune || '--';
+            profileAddress.textContent = currentUser.address || '--';
+            profileCounter.textContent = currentUser.counterNumber || 'Non renseigné';
+            logoutBtn.disabled = false;
+            editBtn.disabled = false;
+        }
+
+        function openEditModal() {
+            const currentUser = JSON.parse(localStorage.getItem('regidesoUser') || 'null');
+            if (!currentUser) return;
+
+            document.getElementById('editFullName').value = currentUser.fullName || '';
+            document.getElementById('editPhone').value = currentUser.phone || '';
+            document.getElementById('editCommune').value = currentUser.commune || '';
+            document.getElementById('editAddress').value = currentUser.address || '';
+            document.getElementById('editCounter').value = currentUser.counterNumber || '';
+            document.getElementById('editPhoto').value = '';
+
+            editModal.classList.remove('hidden');
+            editModal.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeEditModal() {
+            editModal.classList.add('hidden');
+            editModal.setAttribute('aria-hidden', 'true');
+            editProfileForm.reset();
+        }
+
+        renderProfile(savedUser);
+
+        logoutBtn.addEventListener('click', function () {
+            const confirmed = window.confirm('Voulez-vous vraiment vous déconnecter ?');
+            if (!confirmed) return;
+
+            localStorage.removeItem('regidesoUser');
+            window.location.href = 'index.html';
+        });
+
+        editBtn.addEventListener('click', openEditModal);
+        closeModalBtn.addEventListener('click', closeEditModal);
+        cancelEditBtn.addEventListener('click', closeEditModal);
+
+        editProfileForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('editPhoto');
+            const selectedFile = fileInput.files && fileInput.files[0];
+
+            const updatedUser = {
+                fullName: document.getElementById('editFullName').value.trim(),
+                phone: document.getElementById('editPhone').value.trim(),
+                commune: document.getElementById('editCommune').value.trim(),
+                address: document.getElementById('editAddress').value.trim(),
+                counterNumber: document.getElementById('editCounter').value.trim(),
+                photo: ''
+            };
+
+            if (selectedFile) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    updatedUser.photo = e.target.result;
+                    localStorage.setItem('regidesoUser', JSON.stringify(updatedUser));
+                    renderProfile(updatedUser);
+                    closeEditModal();
+                };
+                reader.readAsDataURL(selectedFile);
+                return;
+            }
+
+            const currentUser = JSON.parse(localStorage.getItem('regidesoUser') || 'null');
+            updatedUser.photo = currentUser && currentUser.photo ? currentUser.photo : '';
+
+            localStorage.setItem('regidesoUser', JSON.stringify(updatedUser));
+            renderProfile(updatedUser);
+            closeEditModal();
+        });
+
+        editModal.addEventListener('click', function (event) {
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+        });
+    </script>
+</body>
+</html>

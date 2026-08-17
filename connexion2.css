@@ -1,0 +1,168 @@
+﻿*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.register-body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: #eaf3fb;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.register-container{
+    width: min(100%, 420px);
+    margin: 0 auto;
+    background: #0B4D84;
+    padding: 24px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.back-link{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.register-container h1{
+    color: white;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: clamp(1.8rem, 4vw, 2.3rem);
+}
+
+.register-form label{
+    color: white;
+    font-weight: bold;
+    margin-bottom: 7px;
+    display: block;
+    font-size: 14px;
+}
+
+.register-form input,
+.register-form select{
+    width: 100%;
+    min-height: 46px;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 14px;
+    margin-bottom: 17px;
+    background: #1f6fb2;
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+.register-form input[type="file"]{
+    padding: 10px 12px;
+    min-height: auto;
+    color: #e0f2fe;
+}
+
+.register-form input::placeholder,
+.register-form select {
+    color: #dbeafe;
+}
+
+.double-fields{
+    display: flex;
+    gap: 10px;
+}
+
+.field{
+    flex: 1;
+}
+
+.register-form button{
+    width: 100%;
+    padding: 14px 10px;
+    border: none;
+    border-radius: 12px;
+    background: #60a5fa;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.register-form button:hover{
+    background: #3b82f6;
+}
+
+.bottom-login{
+    text-align: center;
+    margin-top: 22px;
+    color: white;
+    font-size: 14px;
+}
+
+.bottom-login a{
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (max-width: 560px){
+    .register-body{
+        padding: 18px 14px;
+    }
+
+    .register-container{
+        padding: 22px 16px;
+        width: min(100%, 420px);
+    }
+
+    .double-fields{
+        display: block;
+    }
+
+    .register-container h1{
+        font-size: 27px;
+    }
+
+    .register-form label{
+        font-size: 13px;
+    }
+
+    .register-form input,
+    .register-form select{
+        min-height: 46px;
+        font-size: 15px;
+    }
+
+    .register-form button{
+        padding: 15px 12px;
+        font-size: 16px;
+    }
+
+    .bottom-login{
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px){
+    .register-container{
+        padding: 20px 14px;
+    }
+
+    .register-container h1{
+        font-size: 25px;
+    }
+
+    .register-form button{
+        font-size: 15px;
+    }
+}
