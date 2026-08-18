@@ -21,12 +21,17 @@
             <input type="text" placeholder="Numéro client">
          </div>  
          
-         <div class="input-box">
+         <div class="input-box password-box">
             <span><i class="fa-solid fa-lock"></i></span>
-            <input type="password" placeholder="Mot de passe">
+            <div class="password-field">
+                <input id="loginPassword" type="password" placeholder="Mot de passe">
+                <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
          </div>
 
-         <button class="login-btn">
+         <button class="login-btn" type="button">
                 Se connecter
          </button>
          <p class="bottom-text">
@@ -34,5 +39,22 @@
          <a href="connexion2.html">Créer un compte</a>
          </p>
       </div>
+    <script>
+        document.querySelectorAll('.toggle-password').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const input = button.parentElement.querySelector('input');
+                if (!input) return;
+
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+
+                const icon = button.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-eye', !isPassword);
+                    icon.classList.toggle('fa-eye-slash', isPassword);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

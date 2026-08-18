@@ -1,5 +1,5 @@
-<!DOCTYPE htm
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,17 @@
     <div class="container">
         <a href="Paiement.html">←</a>
         <p>Souscription</p>
+
+        <div class="service-card" id="serviceCard">
+            <div class="service-logo-wrap">
+                <img id="serviceLogo" src="mpesa.png" alt="Logo du service choisi">
+            </div>
+            <div class="service-info">
+                <span>Service de paiement</span>
+                <strong id="selectedServiceName">M-Pesa</strong>
+            </div>
+        </div>
+
         <form class="souscription-form">
             <label>Numéro de téléphone</label>
             <input type="text" placeholder="0821330610">
@@ -24,11 +35,48 @@
 
             <label>Code PIN</label>
             <div class="pin">
-                <input type="password" placeholder="....">
-                <i class="fa-solid fa-eye"></i>
+                <input id="pinInput" type="password" placeholder="....">
+                <button type="button" class="toggle-password" aria-label="Afficher le code PIN">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
             </div>
-            <button type="submit">Souscrire</button>
+            <button type="submit">Souscrire via <span id="buttonServiceName">M-Pesa</span></button>
         </form>
     </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const selectedService = params.get('service');
+        const serviceName = document.getElementById('selectedServiceName');
+        const buttonServiceName = document.getElementById('buttonServiceName');
+        const serviceLogo = document.getElementById('serviceLogo');
+
+        const serviceMap = {
+            'M-Pesa': { label: 'M-Pesa', logo: 'mpesa.png' },
+            'Airtel Money': { label: 'Airtel Money', logo: 'airtelmoney.jpg' },
+            'Orange Money': { label: 'Orange Money', logo: 'orangemoney.png' },
+            'Affrimoney': { label: 'Affrimoney', logo: 'affrimoney.jpg' }
+        };
+
+        const serviceText = selectedService ? decodeURIComponent(selectedService) : 'M-Pesa';
+        const currentService = serviceMap[serviceText] || serviceMap['M-Pesa'];
+
+        serviceName.textContent = currentService.label;
+        buttonServiceName.textContent = currentService.label;
+        serviceLogo.src = currentService.logo;
+        serviceLogo.alt = 'Logo ' + currentService.label;
+
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const input = document.getElementById('pinInput');
+            const icon = this.querySelector('i');
+
+            if (!input || !icon) return;
+
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye', !isPassword);
+            icon.classList.toggle('fa-eye-slash', isPassword);
+        });
+    </script>
 </body>
 </html>

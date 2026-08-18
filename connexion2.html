@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer votre Compte</title>
     <link rel="stylesheet" href="connexion2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="register-body">
     <div class="register-container">
@@ -33,7 +34,12 @@
 
             <!--PASSWORD-->
             <label for="password">Mot de passe (min. 8 caractères)</label>
-            <input id="password" type="password" required>
+            <div class="password-toggle-wrap">
+                <input id="password" type="password" required>
+                <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
        
             <!--LIGNE DOUBLE-->
             <div class="double-fields">
@@ -123,6 +129,25 @@
                 } else {
                     saveUser('');
                 }
+            });
+        </script>
+
+        <script>
+            document.querySelectorAll('.toggle-password').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    const container = button.closest('.password-toggle-wrap');
+                    const input = container ? container.querySelector('input') : null;
+                    if (!input) return;
+
+                    const isPassword = input.type === 'password';
+                    input.type = isPassword ? 'text' : 'password';
+
+                    const icon = button.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-eye', !isPassword);
+                        icon.classList.toggle('fa-eye-slash', isPassword);
+                    }
+                });
             });
         </script>
 

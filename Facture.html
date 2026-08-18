@@ -6,9 +6,11 @@
     <title>Facture d'eau</title>
     <link rel="stylesheet" href="Facture.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="factureToDownload">
         <div class="header">
             <div class="logo">
                 <div class="badge"></div>
@@ -98,15 +100,36 @@
             </div>
         </div>
 
-        <div class="telecharger">
+        <button class="telecharger" id="downloadPdfBtn" type="button" aria-label="Télécharger la facture en PDF">
             <i class="fa-solid fa-download"></i>
             <p>Télécharger la facture</p>
-        </div>
-
+        </button>
 
         <div class="footer">
             <p>REGIDESO - Régie de Distribution d'Eau. Pour toute question, contactez-nous au +243 99 123 4567 ou email contact@regideso.cd</p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('downloadPdfBtn').addEventListener('click', function () {
+            const invoice = document.getElementById('factureToDownload');
+
+            html2canvas(invoice, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff'
+            }).then(function (canvas) {
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('facture-regideso.pdf');
+            });
+        });
+    </script>
 </body>
 </html>
